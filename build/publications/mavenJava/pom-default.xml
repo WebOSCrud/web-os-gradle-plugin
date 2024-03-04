@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <!-- This module was also published with a richer model, Gradle metadata,  -->
+  <!-- which should be used instead. Do not delete the following line which  -->
+  <!-- is to indicate to Gradle or any Gradle module metadata file consumer  -->
+  <!-- that they should prefer consuming it instead. -->
+  <!-- do_not_remove: published-with-gradle-metadata -->
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>cn.donting.web.os</groupId>
+  <artifactId>web-os-gradle-plugin</artifactId>
+  <version>0.0.12-SNAPSHOT</version>
+  <name>web-os-gradle-plugin</name>
+  <description>web-os-gradle-plugin</description>
+  <url>https://github.com/WebOSCrud/web-os-gradle-plugin</url>
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>donting</id>
+      <name>donting</name>
+      <email>596643891@qq.com</email>
+    </developer>
+  </developers>
+</project>
