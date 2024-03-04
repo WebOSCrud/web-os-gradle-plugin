@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"cn.donting.web.os.gradle.plugin","l":"TaskRegister"},{"p":"cn.donting.web.os.gradle.plugin","l":"WapExtension"},{"p":"cn.donting.web.os.gradle.plugin.task","l":"WapRunTask"},{"p":"cn.donting.web.os.gradle.plugin.task","l":"WevClasspathTask"}];updateSearchResults();

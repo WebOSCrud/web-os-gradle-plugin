@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"cn.donting.web.os.gradle.plugin"},{"l":"cn.donting.web.os.gradle.plugin.task"},{"l":"所有程序包","u":"allpackages-index.html"}];updateSearchResults();
