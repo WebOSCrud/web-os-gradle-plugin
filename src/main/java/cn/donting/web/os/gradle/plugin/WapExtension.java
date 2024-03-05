@@ -12,7 +12,7 @@ public class WapExtension {
     private final Property<String> osCoreVersion;
     private final Property<String> osCoreDownloadURL;
     private final Property<String> pageNotFoundForwardHost;
-    private final Property<String> pageNotFoundForwardWapId;
+    private final Property<Boolean> pageNotFoundForwardWapId;
 
     public WapExtension(Project project) {
         this.runArgs = project.getObjects().listProperty(String.class);
@@ -20,7 +20,7 @@ public class WapExtension {
         this.osCoreVersion = project.getObjects().property(String.class);
         this.osCoreDownloadURL = project.getObjects().property(String.class);
         this.pageNotFoundForwardHost = project.getObjects().property(String.class);
-        this.pageNotFoundForwardWapId = project.getObjects().property(String.class);
+        this.pageNotFoundForwardWapId = project.getObjects().property(Boolean.class);
     }
 
     public ListProperty<String> getRunArgs() {
@@ -44,7 +44,7 @@ public class WapExtension {
         return pageNotFoundForwardHost;
     }
 
-    public Property<String> getPageNotFoundForwardWapId() {
+    public Property<Boolean> getPageNotFoundForwardWapId() {
         return pageNotFoundForwardWapId;
     }
 }

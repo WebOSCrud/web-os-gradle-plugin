@@ -1,5 +1,6 @@
 package cn.donting.web.os.gradle.plugin.task;
 
+import cn.donting.web.os.gradle.plugin.WapExtension;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.Project;
 import org.gradle.api.file.FileCollection;
@@ -65,11 +66,15 @@ public class WevClasspathTask extends DefaultTask {
             throw new RuntimeException("未找到org.springframework.boot.autoconfigure.SpringBootApplication 标识的启动类");
         }
         File rootDir = project.getProjectDir();
-        File file = new File(rootDir, project.getName()+".wev");
-        if(!file.exists()){
+        WapExtension pe = project.getExtensions().findByType(WapExtension.class);
+        File dir = new File(rootDir, ".web-os-dev");
+        dir.mkdirs();
+        File file = pe.getOsCoreDir().getOrElse(new File(dir,  project.getName() + ".wev"));
+        System.out.println(file);
+        if (!file.exists()) {
             file.createNewFile();
         }
-        Files.write(file.toPath(),classpathFile.toString().getBytes());
+        Files.write(file.toPath(), classpathFile.toString().getBytes());
     }
 
 

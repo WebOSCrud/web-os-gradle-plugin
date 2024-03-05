@@ -80,9 +80,9 @@ publishing {
     }
     publications {
         mavenJava(MavenPublication) {
-            groupId = "cn.donting.web.os"
+            groupId = pluginGroup
             artifactId = "web-os-gradle-plugin"
-            version = '0.0.12-SNAPSHOT'
+            version = pluginVersion
             from components.java
             artifact sourcesJar
             artifact javadocJar
