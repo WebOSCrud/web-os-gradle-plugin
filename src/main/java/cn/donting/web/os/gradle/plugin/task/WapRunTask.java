@@ -1,6 +1,9 @@
 package cn.donting.web.os.gradle.plugin.task;
 
 import cn.donting.web.os.gradle.plugin.WapExtension;
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import org.gradle.api.file.FileCollection;
 import org.gradle.api.provider.ListProperty;
 import org.gradle.api.provider.Property;
@@ -15,6 +18,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,9 +38,9 @@ public class WapRunTask extends JavaExec {
     public void exec() {
         pe = getProject().getExtensions().findByType(WapExtension.class);
         osCoreVersion = pe.getOsCoreVersion().getOrNull();
+        SourceSetContainer sourceSets = getProject().getExtensions().getByType(SourceSetContainer.class);
+        SourceSet main = sourceSets.getByName("main");
         if (osCoreVersion == null) {
-            SourceSetContainer sourceSets = getProject().getExtensions().getByType(SourceSetContainer.class);
-            SourceSet main = sourceSets.getByName("main");
             FileCollection runtimeClasspath = main.getRuntimeClasspath();
             for (File file : runtimeClasspath) {
                 String name = file.getName();
@@ -54,7 +58,15 @@ public class WapRunTask extends JavaExec {
                 }
             }
         }
-
+        File singleFile = main.getResources().getSourceDirectories().getSingleFile();
+        File wapInfoFile = new File(singleFile, "wap.info.json");
+        System.out.println("wapInfoFile:"+wapInfoFile);
+        if(!wapInfoFile.exists()){
+            throw new RuntimeException("缺少依赖wap.info.json");
+        }
+        String json = FileUtil.readUtf8String(wapInfoFile);
+        JSONObject jsonObject = JSONUtil.parseObj(json);
+        String wapId = jsonObject.getStr("id");
         if(osCoreVersion==null){
             System.err.println("未依赖web-os-api，也没有指定 osCoreVersion");
             throw new RuntimeException("未依赖web-os-api，也没有指定 osCoreVersion");
@@ -75,6 +87,7 @@ public class WapRunTask extends JavaExec {
         List<String> runArgs = stringListProperty.getOrElse(new ArrayList<>());
         args.addAll(runArgs);
         args.add("--startMode=WapRun");
+        args.add("--devWapId="+wapId);
         ArrayList<String> jvmArgs = new ArrayList<>();
         try {
             args.add("-user.dir=" + coreDir.getCanonicalPath());

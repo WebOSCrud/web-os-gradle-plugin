@@ -21,6 +21,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'cn.hutool:hutool-json:5.8.26'
     compileOnly( gradleApi() )
 }
 gradlePlugin {
